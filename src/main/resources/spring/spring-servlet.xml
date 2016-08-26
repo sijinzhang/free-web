@@ -10,45 +10,67 @@
       http://www.springframework.org/schema/mvc 
       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <bean id="propertyConfigurer"
-           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
+    <context:component-scan base-package="com.sijin.free.web.*" />
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven />
+
+
+    <!-- Json返回 乱码处理 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
             <list>
-                <value>classpath:jdbc.properties</value>
+                <bean  class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <bean  class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list><value>application/json;charset=UTF-8</value></list>
+                    </property>
+                </bean>
+                <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+                <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
             </list>
+        </property>
+    </bean>
+    <mvc:resources location="/static/**" mapping="/static/**"/>
+
+
+    <!--viewresolve-->
+    <bean id="velocityConfigurer"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="view/" />
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">utf-8</prop>
+                <prop key="output.encoding">utf-8</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="contentType">
+            <value>text/html;charset=UTF-8</value>
+        </property>
+        <property name="layoutUrl" value="layout.html"/>
+        <!--<property name="cache" value="true"/>-->
+        <!--<property name="prefix" value="view/"/>-->
+        <property name="suffix" value=".html"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="requestContextAttribute" value="requestContext"/>
+        <property name="dateToolAttribute">
+            <value>dateTool</value>
         </property>
     </bean>
 
 
-<mvc:annotation-driven />
-    <context:component-scan base-package="com.sijin.free.web.*" />
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/" />
-        <property name="suffix" value=".jsp" />
+    <!--定义异常处理页面-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.sql.SQLException">outException</prop>
+                <prop key="java.io.IOException">outException</prop>
+            </props>
+        </property>
     </bean>
-
-    <!-- apache.dbcp连接池的配置 -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="${jdbc_url}"/>
-        <property name="username" value="${jdbc_username}"/>
-        <property name="password" value="${jdbc_passowrd}"/>
-        <property name="maxActive" value="${maxActive}"/>
-        <property name="maxIdle" value="${maxIdle}"/>
-        <property name="maxWait" value="${maxWait}"/>
-        <property name="defaultAutoCommit" value="${defaultAutoCommit}"/>
-    </bean>
-
-    <!-- jdbc注入 -->
-    <bean id="jdbcTemplate"
-          class="org.springframework.jdbc.core.JdbcTemplate">
-        <constructor-arg ref="dataSource"/>
-    </bean>
-
-    <!-- dao注入 -->
-    <!--<bean id="placementDao" class="com.mogujie.datapp.configsystem.dao.PlacementDao">-->
-        <!--<property name="jdbcTemplate" ref="jdbcTemplate"></property>-->
-    <!--</bean>-->
-
 </beans>

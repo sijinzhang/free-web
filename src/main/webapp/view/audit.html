@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                人-审核(不区分业务团队)
+            </header>
+            <div class="panel-body" ng-controller="auditCtrl">
+                <!--select-->
+                <div class="form-group">
+                    <label class="control-label col-md-1">时间区间:</label>
+                    <div class="col-md-3">
+                        <div class="input-group input-large">
+                            <input type="text" class="form-control dpd1" name="from" id="beginDate">
+                            <span class="input-group-addon">To</span>
+                            <input type="text" class="form-control dpd2" name="to" id="endDate">
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" placeholder="search.." ng-model="content">
+                    </div>
+                    <button type="button" class="btn btn-info" ng-click="goSelect()">GO!</button>
+                </div>
+                <!--select end-->
+
+                <!--page start-->
+                <div class="btn-row">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page-1)">
+                                上一页
+                            </button>
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page+1)">
+                                下一页
+                            </button>
+                        </div>
+                        <span class="help-block">共{{count}}条数据，当前第{{page+1}}页，共{{pageSize}}页</span>
+                    </div>
+                </div>
+                <!--page end-->
+                <section id="audit">
+                    <table class="table table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                        <tr>
+                            <th>日期</th>
+                            <th>审核人</th>
+                            <th>审核量</th>
+                            <th>通过</th>
+                            <th>不通过</th>
+                            <th>暂存(爬虫有)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="audit in listContent">
+                            <td>{{audit.biDate}}</td>
+                            <td>{{audit.auditUser}}</td>
+                            <td>{{audit.pass+audit.unpass+audit.hold}}</td>
+                            <td>{{audit.pass}}</td>
+                            <td>{{audit.unpass}}</td>
+                            <td>{{audit.hold}}</td>
+                        </tr>
+                        <thead class="cf">
+                        <tr>
+                            <th>日期</th>
+                            <th>审核人</th>
+                            <th>审核量</th>
+                            <th>通过</th>
+                            <th>不通过</th>
+                            <th>暂存(爬虫有)</th>
+                        </tr>
+                        </thead>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!--page start-->
+                <div class="btn-row">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page-1)">
+                                上一页
+                            </button>
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page+1)">
+                                下一页
+                            </button>
+                        </div>
+                        <span class="help-block">共{{count}}条数据，当前第{{page+1}}页，共{{pageSize}}页</span>
+                    </div>
+                </div>
+                <!--page end-->
+            </div>
+        </section>
+    </div>
+</div>
+

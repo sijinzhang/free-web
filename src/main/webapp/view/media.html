@@ -1,0 +1,126 @@
+<!-- page start-->
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                媒体质量评估(不区分授权与否)
+            </header>
+            <div class="panel-body" ng-controller="mediaCtrl">
+                <!--select-->
+                <div class="form-group">
+                    <label class="control-label col-md-1">时间区间:</label>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-large">
+                            <input type="text" class="form-control dpd1" name="from" id="beginDate">
+                            <span class="input-group-addon">To</span>
+                            <input type="text" class="form-control dpd2" name="to" id="endDate">
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                    <label class="control-label col-md-1">站点:</label>
+
+                    <div class="col-md-1">
+                        <select class="form-control" ng-change="selectCity()" ng-model="city"
+                                ng-options="city.name for city in cities"></select>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" placeholder="search.." ng-model="content">
+                    </div>
+                    <button type="button" class="btn btn-info" ng-click="goSelect()">GO!</button>
+                </div>
+                <!--select end-->
+
+                <!--page start-->
+                <div class="btn-row">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page-1)">
+                                上一页
+                            </button>
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page+1)">
+                                下一页
+                            </button>
+                        </div>
+                        <span class="help-block">共{{count}}条数据，当前第{{page+1}}页，共{{pageSize}}页</span>
+                    </div>
+                </div>
+                <!--page end-->
+                <section id="media">
+                    <table class="table table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                        <tr>
+                            <th>日期</th>
+                            <th>媒体/来源</th>
+                            <th>站点</th>
+                            <th>源网页频道</th>
+                            <th>通过</th>
+                            <th>不通过</th>
+                            <th>当日通过率</th>
+                            <th><a href="" ng-click="orderbyData(1)">累计通过率</a></th>
+                            <th><a href="" ng-click="orderbyData(2)">累计通过量</a></th>
+                            <th>暂存</th>
+                            <th>新增</th>
+                            <th>累计待审核</th>
+                            <th>当日审核率</th>
+                            <th>累计审核率</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="media in listContent">
+                            <td>{{media.date}}</td>
+                            <td>{{media.site}}</td>
+                            <td>{{media.cityName}}</td>
+                            <td>{{media.preChannel}}</td>
+                            <td>{{media.yes}}</td>
+                            <td>{{media.no}}</td>
+                            <td>{{media.dayYesRate*100 | number:2}}%</td>
+                            <td>{{media.allYesRate*100 | number:2}}%</td>
+                            <td>{{media.allYes}}</td>
+                            <td>{{media.temp}}</td>
+                            <td>{{media.add}}</td>
+                            <td>{{media.allWaiting}}</td>
+                            <td>{{media.dayDealRate*100 | number:2}}%</td>
+                            <td>{{media.allDealRate*100 | number:2}}%</td>
+                        </tr>
+                        </tbody>
+                        <thead class="cf">
+                        <tr>
+                            <th>日期</th>
+                            <th>媒体/来源</th>
+                            <th>站点</th>
+                            <th>源网页频道</th>
+                            <th>通过</th>
+                            <th>不通过</th>
+                            <th>当日通过率</th>
+                            <th>累计通过率</th>
+                            <th>累计通过量</th>
+                            <th>暂存</th>
+                            <th>新增</th>
+                            <th>累计待审核</th>
+                            <th>当日审核率</th>
+                            <th>累计审核率</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </section>
+
+                <!--page start-->
+                <div class="btn-row">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page-1)">
+                                上一页
+                            </button>
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page+1)">
+                                下一页
+                            </button>
+                        </div>
+                        <span class="help-block">共{{count}}条数据，当前第{{page+1}}页，共{{pageSize}}页</span>
+                    </div>
+                </div>
+                <!--page end-->
+            </div>
+        </section>
+    </div>
+</div>

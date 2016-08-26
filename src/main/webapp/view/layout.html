@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="tuijiang">
+    <meta name="keyword" content="Recsys,BI">
+
+    <title>Recsys-BI统计</title>
+    <script type="text/javascript">var contextPath = '${requestContext.contextPath}';</script>
+    <!-- Bootstrap core CSS -->
+    <link href="${requestContext.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${requestContext.contextPath}/static/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="${requestContext.contextPath}/static/css/style.css" rel="stylesheet">
+    <link href="${requestContext.contextPath}/static/css/style-responsive.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="${requestContext.contextPath}/static/assets/bootstrap-datepicker/css/datepicker.css"/>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="${requestContext.contextPath}/static/js/jquery.js"></script>
+    <script src="${requestContext.contextPath}/static/js/jquery-1.8.3.min.js"></script>
+    <script src="${requestContext.contextPath}/static/js/bootstrap.min.js"></script>
+    <script src="${requestContext.contextPath}/static/js/jquery.scrollTo.min.js"></script>
+    <script src="${requestContext.contextPath}/static/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="${requestContext.contextPath}/static/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="${requestContext.contextPath}/static/js/respond.min.js"></script>
+
+    <script src="${requestContext.contextPath}/static/bijs/advanced-form-components.js"></script>
+    <script type="text/javascript" src="${requestContext.contextPath}/static/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="${requestContext.contextPath}/static/angular1/angular-min.js"></script>
+    <script src="${requestContext.contextPath}/static/bijs/biweb.js"></script>
+</head>
+
+<body>
+<section id="container">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <a href="${requestContext.contextPath}/" class="logo">Recsys<span>BI</span></a>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li><a href="${requestContext.contextPath}/verdict.html" id="verdict">总审核结果汇总</a></li>
+                <li><a href="${requestContext.contextPath}/audit.html" id="audit">人员审核汇总</a></li>
+                <li><a href="${requestContext.contextPath}/media.html" id="media">媒体质量评估汇总</a></li>
+                <li><a href="${requestContext.contextPath}/editor.html" id="editor">编辑效果汇总</a></li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            $screen_content
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sijin.free.web.mappers.DockmaMapper" >
+  <resultMap id="BaseResultMap" type="com.sijin.free.web.common.domain.Dockma" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="codes" property="codes" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="lowPirce" property="lowPirce" jdbcType="DOUBLE" />
+    <result column="highPirce" property="highPirce" jdbcType="DOUBLE" />
+    <result column="deviation" property="deviation" jdbcType="DOUBLE" />
+    <result column="ma5" property="ma5" jdbcType="DOUBLE" />
+    <result column="ma10" property="ma10" jdbcType="DOUBLE" />
+    <result column="ma20" property="ma20" jdbcType="DOUBLE" />
+    <result column="ma30" property="ma30" jdbcType="DOUBLE" />
+    <result column="updated" property="updated" jdbcType="BIGINT" />
+    <result column="created" property="created" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, codes, name, price, lowPirce, highPirce, deviation, ma5, ma10, ma20, ma30, updated, 
+    created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dockma
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dockma
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sijin.free.web.common.domain.Dockma" >
+    insert into dockma (id, codes, name, 
+      price, lowPirce, highPirce, 
+      deviation, ma5, ma10, 
+      ma20, ma30, updated, created
+      )
+    values (#{id,jdbcType=BIGINT}, #{codes,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{lowPirce,jdbcType=DOUBLE}, #{highPirce,jdbcType=DOUBLE}, 
+      #{deviation,jdbcType=DOUBLE}, #{ma5,jdbcType=DOUBLE}, #{ma10,jdbcType=DOUBLE}, 
+      #{ma20,jdbcType=DOUBLE}, #{ma30,jdbcType=DOUBLE}, #{updated,jdbcType=BIGINT}, #{created,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sijin.free.web.common.domain.Dockma" >
+    insert into dockma
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="codes != null" >
+        codes,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="lowPirce != null" >
+        lowPirce,
+      </if>
+      <if test="highPirce != null" >
+        highPirce,
+      </if>
+      <if test="deviation != null" >
+        deviation,
+      </if>
+      <if test="ma5 != null" >
+        ma5,
+      </if>
+      <if test="ma10 != null" >
+        ma10,
+      </if>
+      <if test="ma20 != null" >
+        ma20,
+      </if>
+      <if test="ma30 != null" >
+        ma30,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="codes != null" >
+        #{codes,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="lowPirce != null" >
+        #{lowPirce,jdbcType=DOUBLE},
+      </if>
+      <if test="highPirce != null" >
+        #{highPirce,jdbcType=DOUBLE},
+      </if>
+      <if test="deviation != null" >
+        #{deviation,jdbcType=DOUBLE},
+      </if>
+      <if test="ma5 != null" >
+        #{ma5,jdbcType=DOUBLE},
+      </if>
+      <if test="ma10 != null" >
+        #{ma10,jdbcType=DOUBLE},
+      </if>
+      <if test="ma20 != null" >
+        #{ma20,jdbcType=DOUBLE},
+      </if>
+      <if test="ma30 != null" >
+        #{ma30,jdbcType=DOUBLE},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sijin.free.web.common.domain.Dockma" >
+    update dockma
+    <set >
+      <if test="codes != null" >
+        codes = #{codes,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="lowPirce != null" >
+        lowPirce = #{lowPirce,jdbcType=DOUBLE},
+      </if>
+      <if test="highPirce != null" >
+        highPirce = #{highPirce,jdbcType=DOUBLE},
+      </if>
+      <if test="deviation != null" >
+        deviation = #{deviation,jdbcType=DOUBLE},
+      </if>
+      <if test="ma5 != null" >
+        ma5 = #{ma5,jdbcType=DOUBLE},
+      </if>
+      <if test="ma10 != null" >
+        ma10 = #{ma10,jdbcType=DOUBLE},
+      </if>
+      <if test="ma20 != null" >
+        ma20 = #{ma20,jdbcType=DOUBLE},
+      </if>
+      <if test="ma30 != null" >
+        ma30 = #{ma30,jdbcType=DOUBLE},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sijin.free.web.common.domain.Dockma" >
+    update dockma
+    set codes = #{codes,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      lowPirce = #{lowPirce,jdbcType=DOUBLE},
+      highPirce = #{highPirce,jdbcType=DOUBLE},
+      deviation = #{deviation,jdbcType=DOUBLE},
+      ma5 = #{ma5,jdbcType=DOUBLE},
+      ma10 = #{ma10,jdbcType=DOUBLE},
+      ma20 = #{ma20,jdbcType=DOUBLE},
+      ma30 = #{ma30,jdbcType=DOUBLE},
+      updated = #{updated,jdbcType=BIGINT},
+      created = #{created,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

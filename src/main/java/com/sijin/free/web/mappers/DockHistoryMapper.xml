@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sijin.free.web.mappers.DockHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.sijin.free.web.common.domain.DockHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="open" property="open" jdbcType="DOUBLE" />
+    <result column="high" property="high" jdbcType="DOUBLE" />
+    <result column="low" property="low" jdbcType="DOUBLE" />
+    <result column="close" property="close" jdbcType="DOUBLE" />
+    <result column="volume" property="volume" jdbcType="DOUBLE" />
+    <result column="updated" property="updated" jdbcType="BIGINT" />
+    <result column="created" property="created" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, date, open, high, low, close, volume, updated, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dockHistory
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByDockHistory" resultMap="BaseResultMap" parameterType="com.sijin.free.web.common.domain.DockHistory" >
+    select
+    <include refid="Base_Column_List" />
+    from dockHistory
+    <where >
+      <if test="code != null" >
+         code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="date != null" >
+        and date = #{date,jdbcType=DATE}
+      </if>
+      <if test="open != null" >
+        and open = #{open,jdbcType=DOUBLE}
+      </if>
+      <if test="high != null" >
+        and high = #{high,jdbcType=DOUBLE}
+      </if>
+      <if test="low != null" >
+        and low = #{low,jdbcType=DOUBLE}
+      </if>
+      <if test="close != null" >
+        and close = #{close,jdbcType=DOUBLE}
+      </if>
+      <if test="volume != null" >
+        and volume = #{volume,jdbcType=DOUBLE}
+      </if>
+      <if test="updated != null" >
+        and updated = #{updated,jdbcType=BIGINT}
+      </if>
+      <if test="created != null" >
+        and  created = #{created,jdbcType=BIGINT}
+      </if>
+
+
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dockHistory
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sijin.free.web.common.domain.DockHistory" >
+    insert into dockHistory (id, code, name, 
+      date, open, high, low, 
+      close, volume, updated, 
+      created)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{date,jdbcType=DATE}, #{open,jdbcType=DOUBLE}, #{high,jdbcType=DOUBLE}, #{low,jdbcType=DOUBLE}, 
+      #{close,jdbcType=DOUBLE}, #{volume,jdbcType=DOUBLE}, #{updated,jdbcType=BIGINT}, 
+      #{created,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sijin.free.web.common.domain.DockHistory" >
+    insert into dockHistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+      <if test="high != null" >
+        high,
+      </if>
+      <if test="low != null" >
+        low,
+      </if>
+      <if test="close != null" >
+        close,
+      </if>
+      <if test="volume != null" >
+        volume,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="low != null" >
+        #{low,jdbcType=DOUBLE},
+      </if>
+      <if test="close != null" >
+        #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null" >
+        #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sijin.free.web.common.domain.DockHistory" >
+    update dockHistory
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="open != null" >
+        open = #{open,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        high = #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="low != null" >
+        low = #{low,jdbcType=DOUBLE},
+      </if>
+      <if test="close != null" >
+        close = #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null" >
+        volume = #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sijin.free.web.common.domain.DockHistory" >
+    update dockHistory
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      open = #{open,jdbcType=DOUBLE},
+      high = #{high,jdbcType=DOUBLE},
+      low = #{low,jdbcType=DOUBLE},
+      close = #{close,jdbcType=DOUBLE},
+      volume = #{volume,jdbcType=DOUBLE},
+      updated = #{updated,jdbcType=BIGINT},
+      created = #{created,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

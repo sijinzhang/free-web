@@ -17,7 +17,7 @@ public class RedSoldier {
 
     private Long updated;
 
-    private Long  created;
+    private Long created;
 
     public Long getId() {
         return id;

@@ -13,9 +13,11 @@ public interface CodesMapper {
 
     Codes selectByPrimaryKey(Long id);
 
-    List<Codes> selectAll();
+    List<Codes> selectByLevel(Integer followLevel);
 
     int updateByPrimaryKeySelective(Codes record);
 
     int updateByPrimaryKey(Codes record);
+
+    int countSelectByLevel(int level);
 }

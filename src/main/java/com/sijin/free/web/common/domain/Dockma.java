@@ -9,9 +9,9 @@ public class Dockma {
 
     private Double price;
 
-    private Double lowPirce;
+    private Double lowPrice;
 
-    private Double highPirce;
+    private Double highPrice;
 
     private Double deviation;
 
@@ -59,20 +59,20 @@ public class Dockma {
         this.price = price;
     }
 
-    public Double getLowPirce() {
-        return lowPirce;
+    public Double getlowPrice() {
+        return lowPrice;
     }
 
-    public void setLowPirce(Double lowPirce) {
-        this.lowPirce = lowPirce;
+    public void setlowPrice(Double lowPrice) {
+        this.lowPrice = lowPrice;
     }
 
-    public Double getHighPirce() {
-        return highPirce;
+    public Double gethighPrice() {
+        return highPrice;
     }
 
-    public void setHighPirce(Double highPirce) {
-        this.highPirce = highPirce;
+    public void sethighPrice(Double highPrice) {
+        this.highPrice = highPrice;
     }
 
     public Double getDeviation() {

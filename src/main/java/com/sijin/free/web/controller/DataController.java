@@ -17,12 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Author tuijiang
- * Date 16/4/12
- */
+
 @Controller
-@RequestMapping(value = "/recsysbi")
+@RequestMapping(value = "/monitor")
 public class DataController {
     @Autowired
     private DataService dataService;
@@ -33,16 +30,16 @@ public class DataController {
     /**
      * @return
      */
-    @RequestMapping(value = "/editor")
+    @RequestMapping(value = "/redSoldier")
     @ResponseBody
-    public String editor(BaseRequest baseRequest) throws ParseException {
+    public String redSoldier(BaseRequest baseRequest) throws ParseException {
         int page = baseRequest.getPage();
         int start = baseRequest.getPage() * baseRequest.getPagePerSize();
         baseRequest.setPage(start);
         baseRequest = transeDateAndSet(baseRequest);
 
-        List<Editor> result = dataService.queryEditor(baseRequest);
-        int count = dataService.countEditor(baseRequest);
+        List<RedSoldier> result = dataService.redSoldier(baseRequest);
+        int count = dataService.countRedSoldier(baseRequest);
 
         return getResponse(page, count, baseRequest.getPagePerSize(), result);
     }
@@ -50,16 +47,16 @@ public class DataController {
     /**
      * @return
      */
-    @RequestMapping(value = "/verdict")
+    @RequestMapping(value = "/realtime")
     @ResponseBody
-    public String verdict(BaseRequest baseRequest) {
+    public String realtime(BaseRequest baseRequest) {
         int page = baseRequest.getPage();
         int start = baseRequest.getPage() * baseRequest.getPagePerSize();
         baseRequest.setPage(start);
         baseRequest = transeDateAndSet(baseRequest);
 
-        List<Verdict> result = dataService.queryVerdict(baseRequest);
-        int count = dataService.countVerdict(baseRequest);
+        List<DockRealTime> result = dataService.realtime(baseRequest);
+        int count = dataService.countRealtime(baseRequest);
 
         return getResponse(page, count, baseRequest.getPagePerSize(), result);
     }
@@ -67,16 +64,16 @@ public class DataController {
     /**
      * @return
      */
-    @RequestMapping(value = "/audit")
+    @RequestMapping(value = "/dailyreback")
     @ResponseBody
-    public String audit(BaseRequest baseRequest) {
+    public String dailyreback(BaseRequest baseRequest) {
         int page = baseRequest.getPage();
         int start = baseRequest.getPage() * baseRequest.getPagePerSize();
         baseRequest.setPage(start);
         baseRequest = transeDateAndSet(baseRequest);
 
-        List<Audit> result = dataService.queryAudit(baseRequest);
-        int count = dataService.countAudit(baseRequest);
+        List<Dockma> result = dataService.dailyreback(baseRequest);
+        int count = dataService.countDailyreback(baseRequest);
 
         return getResponse(page, count, baseRequest.getPagePerSize(), result);
     }
@@ -84,9 +81,9 @@ public class DataController {
     /**
      * @return
      */
-    @RequestMapping(value = "/media")
+    @RequestMapping(value = "/optional")
     @ResponseBody
-    public String media(BaseRequest baseRequest) {
+    public String optional(BaseRequest baseRequest) {
         int page = baseRequest.getPage();
         int start = baseRequest.getPage() * baseRequest.getPagePerSize();
         baseRequest.setPage(start);
@@ -94,8 +91,8 @@ public class DataController {
 
         System.out.println(baseRequest);
         LOGGER.info("{}", baseRequest);
-        List<Media> result = dataService.queryMedia(baseRequest);
-        int count = dataService.countMedia(baseRequest);
+        List<DockInfo> result =  dataService.optional(baseRequest);
+        int count = dataService.countOptional(baseRequest);
 
         return getResponse(page, count, baseRequest.getPagePerSize(), result);
     }

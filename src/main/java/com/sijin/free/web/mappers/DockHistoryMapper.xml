@@ -58,9 +58,8 @@
       <if test="created != null" >
         and  created = #{created,jdbcType=BIGINT}
       </if>
-
-
     </where>
+     order by id desc limit 30;
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

@@ -6,8 +6,8 @@
     <result column="codes" property="codes" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DOUBLE" />
-    <result column="lowPirce" property="lowPirce" jdbcType="DOUBLE" />
-    <result column="highPirce" property="highPirce" jdbcType="DOUBLE" />
+    <result column="lowPrice" property="lowPrice" jdbcType="DOUBLE" />
+    <result column="highPrice" property="highPrice" jdbcType="DOUBLE" />
     <result column="deviation" property="deviation" jdbcType="DOUBLE" />
     <result column="ma5" property="ma5" jdbcType="DOUBLE" />
     <result column="ma10" property="ma10" jdbcType="DOUBLE" />
@@ -17,7 +17,7 @@
     <result column="created" property="created" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, codes, name, price, lowPirce, highPirce, deviation, ma5, ma10, ma20, ma30, updated, 
+    id, codes, name, price, lowPrice, highPrice, deviation, ma5, ma10, ma20, ma30, updated,
     created
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -26,18 +26,29 @@
     from dockma
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectDailyback" resultMap="BaseResultMap" parameterType="com.sijin.free.web.common.domain.BaseRequest" >
+    select
+    <include refid="Base_Column_List" />
+    from dockma
+  </select>
+
+  <select id="countDailyreback" resultType="java.lang.Integer" parameterType="com.sijin.free.web.common.domain.BaseRequest" >
+    select count(*) from dockma
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from dockma
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.sijin.free.web.common.domain.Dockma" >
     insert into dockma (id, codes, name, 
-      price, lowPirce, highPirce, 
+      price, lowPrice, highPrice,
       deviation, ma5, ma10, 
       ma20, ma30, updated, created
       )
     values (#{id,jdbcType=BIGINT}, #{codes,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DOUBLE}, #{lowPirce,jdbcType=DOUBLE}, #{highPirce,jdbcType=DOUBLE}, 
+      #{price,jdbcType=DOUBLE}, #{lowPrice,jdbcType=DOUBLE}, #{highPrice,jdbcType=DOUBLE},
       #{deviation,jdbcType=DOUBLE}, #{ma5,jdbcType=DOUBLE}, #{ma10,jdbcType=DOUBLE}, 
       #{ma20,jdbcType=DOUBLE}, #{ma30,jdbcType=DOUBLE}, #{updated,jdbcType=BIGINT}, #{created,jdbcType=BIGINT}
       )
@@ -57,11 +68,11 @@
       <if test="price != null" >
         price,
       </if>
-      <if test="lowPirce != null" >
-        lowPirce,
+      <if test="lowPrice != null" >
+        lowPrice,
       </if>
-      <if test="highPirce != null" >
-        highPirce,
+      <if test="highPrice != null" >
+        highPrice,
       </if>
       <if test="deviation != null" >
         deviation,
@@ -98,11 +109,11 @@
       <if test="price != null" >
         #{price,jdbcType=DOUBLE},
       </if>
-      <if test="lowPirce != null" >
-        #{lowPirce,jdbcType=DOUBLE},
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=DOUBLE},
       </if>
-      <if test="highPirce != null" >
-        #{highPirce,jdbcType=DOUBLE},
+      <if test="highPrice != null" >
+        #{highPrice,jdbcType=DOUBLE},
       </if>
       <if test="deviation != null" >
         #{deviation,jdbcType=DOUBLE},
@@ -139,11 +150,11 @@
       <if test="price != null" >
         price = #{price,jdbcType=DOUBLE},
       </if>
-      <if test="lowPirce != null" >
-        lowPirce = #{lowPirce,jdbcType=DOUBLE},
+      <if test="lowPrice != null" >
+        lowPrice = #{lowPrice,jdbcType=DOUBLE},
       </if>
-      <if test="highPirce != null" >
-        highPirce = #{highPirce,jdbcType=DOUBLE},
+      <if test="highPrice != null" >
+        highPrice = #{highPrice,jdbcType=DOUBLE},
       </if>
       <if test="deviation != null" >
         deviation = #{deviation,jdbcType=DOUBLE},
@@ -174,8 +185,8 @@
     set codes = #{codes,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
-      lowPirce = #{lowPirce,jdbcType=DOUBLE},
-      highPirce = #{highPirce,jdbcType=DOUBLE},
+      lowPrice = #{lowPrice,jdbcType=DOUBLE},
+      highPrice = #{highPrice,jdbcType=DOUBLE},
       deviation = #{deviation,jdbcType=DOUBLE},
       ma5 = #{ma5,jdbcType=DOUBLE},
       ma10 = #{ma10,jdbcType=DOUBLE},

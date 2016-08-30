@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                人-编辑(分内部原创和约编)
+            </header>
+            <div class="panel-body" ng-controller="redSoldierCtrl">
+                <!--page start-->
+                <div class="btn-row">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page-1)">
+                                上一页
+                            </button>
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page+1)">
+                                下一页
+                            </button>
+                        </div>
+                        <span class="help-block">共{{count}}条数据，当前第{{page+1}}页，共{{pageSize}}页</span>
+                    </div>
+                </div>
+                <!--page end-->
+                <section id="editor">
+                    <table class="table table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                        <tr>
+                            <th>名字</th>
+                            <th>编码</th>
+                            <th>前两天价格</th>
+                            <th>前天价格</th>
+                            <th>昨天价格</th>
+                            <th>当前价</th>
+                            <th>查看</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="redSoldier in listContent">
+                            <td>{{redSoldier.name}}</td>
+                            <td>{{redSoldier.code}}</td>
+                            <td>{{redSoldier.price1}}</td>
+                            <td>{{redSoldier.price2}}</td>
+                            <td>{{redSoldier.price3}}</td>
+                            <td>{{redSoldier.price}}</td>
+                            <td>  <a target="_blank" href="http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code={{dockma.codes}}">财报</a>&nbsp;&nbsp;
+                                <a target="_blank" href="http://f10.eastmoney.com/f10_v2/CompanyManagement.aspx?code={{dockma.codes}}">高管</a>&nbsp;&nbsp;
+                                <a target="_blank" href="https://xueqiu.com/S/{{dockma.codes}}">雪球</a>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                        </tbody>
+                        <thead class="cf">
+                        <tr>
+                            <th>名字</th>
+                            <th>编码</th>
+                            <th>前两天价格</th>
+                            <th>前天价格</th>
+                            <th>昨天价格</th>
+                            <th>当前价</th>
+                            <th>查看</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </section>
+
+                <!--page start-->
+                <div class="btn-row">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page-1)">
+                                上一页
+                            </button>
+                            <button class="btn btn-info" type="button" ng-click="getPage(this.page+1)">
+                                下一页
+                            </button>
+                        </div>
+                        <span class="help-block">共{{count}}条数据，当前第{{page+1}}页，共{{pageSize}}页</span>
+                    </div>
+                </div>
+                <!--page end-->
+            </div>
+        </section>
+    </div>
+</div>

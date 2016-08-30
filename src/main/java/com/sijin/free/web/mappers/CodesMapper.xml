@@ -18,11 +18,14 @@
     from codes
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap"  >
+  <select id="selectByLevel" resultMap="BaseResultMap"  >
     select
     <include refid="Base_Column_List" />
     from codes
-
+    WHERE  followLevel >= #{followLevel,jdbcType=INTEGER}
+  </select>
+  <select id="countSelectByLevel" resultType="java.lang.Integer"  >
+    select count(0) from codes WHERE  followLevel >= #{followLevel,jdbcType=INTEGER}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

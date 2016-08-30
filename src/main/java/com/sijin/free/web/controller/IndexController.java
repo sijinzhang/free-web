@@ -15,33 +15,28 @@ public class IndexController {
 
     @RequestMapping(value = "index")
     public String welcome() {
-        return "verdict";
+        return "dailyreback";
 
     }
 
-    @RequestMapping(value = "verdict")
-    public String verdict() {
-        return "verdict";
+    @RequestMapping(value = "optional")
+    public String optional() {
+        return "optional";
     }
 
-    @RequestMapping(value = "audit")
-    public String audit() {
-        return "audit";
+    @RequestMapping(value = "dailyreback")
+    public String dailyreback() {
+        return "dailyreback";
     }
 
-    @RequestMapping(value = "media")
-    public String media() {
-        return "media";
+    @RequestMapping(value = "realtime")
+    public String realtime() {
+        return "realtime";
     }
 
-    @RequestMapping(value = "editor")
-    public String editor() {
-        return "editor";
+    @RequestMapping(value = "redSoldier")
+    public String redSoldier() {
+        return "redSoldier";
     }
 
-    @RequestMapping(value="status")
-    @ResponseBody
-    public String status() {
-        return "SUCCESS";
-    }
 }
